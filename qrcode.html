@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="description" content="Online (web-based) QR Code Generator. Create your QR code easy and online (Client-side JavaScript). PNG output. Attributes: Size, Colors, Error Correction Level." />
+	<meta http-equiv="description" content="Online (web-based) QR Code Generator. Create your QR code easy and online (Client-side JavaScript). PNG output. Attributes: Size, Colors, Error Correction Level." />
+	
+	<script language="JavaScript" src="qrcode.min.js"></script>
+	<script language="JavaScript">
+	
+	function makeCode()
+	{		
+		var textValue = "http://www.bing.com".replace(/^\s+|\s+$/gm,'');
+		
+		
+		
+		var size = 256;
+			
+		if(isNaN(size)) { 
+			size = 256;
+		}
+		
+		var errorCor = QRCode.CorrectLevel.L;
+		
+		// if (errorCorElement.value == 1) errorCor = QRCode.CorrectLevel.M;
+		// else if (errorCorElement.value == 2) errorCor = QRCode.CorrectLevel.Q;
+		// else if (errorCorElement.value == 3) errorCor = QRCode.CorrectLevel.H;
+		
+		// document.getElementById('yourQRCodeText').style.display = "block";
+		
+		var qrcode = new QRCode(document.getElementById('a'), {
+			text: textValue,
+			width: size,
+			height: size,
+			colorDark : "#000000",
+			colorLight : "#FFF000",
+			correctLevel : errorCor
+		});	
+	}
+
+	function erase()
+	{
+		form1.txt.value = "";
+		document.getElementById('qrcode').innerHTML = '';
+		document.getElementById('yourQRCodeText').style.display = "none";
+	}
+	
+	function init()
+	{
+		$("#colorBase").spectrum(
+		{
+			color: "#000000",
+			preferredFormat: "hex",
+			showInput: true
+		});
+		
+		$("#colorBackground").spectrum(
+		{
+			color: "#ffffff",
+			preferredFormat: "hex",
+			showInput: true
+		});
+	}
+	
+	</script>
+	
+	
+	<title>QR Code Generator Online (JavaScript)</title>
+
+</head>
+<body>
+<div style="display:block; padding:100px">
+        <input type="button" value="Create QR Code" style="font-weight: bold; height: 3em;" onClick="makeCode();">
+</div>
+<div id="a" name="a" > </div>
+
+</body>
+</html>
